@@ -8,18 +8,16 @@ import {Book} from './book';
 })
 export class BookStoreService {
 
-  private api = 'https://api4.angular-buch.com';
+  private apiUrl = 'https://api5.angular-buch.com';
   private http = inject(HttpClient);
 
   getAll(): Observable<Book[]> {
-    return this.http.get<any[]>(`${this.api}/book`);
+    return this.http.get<Book[]>(`${this.apiUrl}/books`);
   }
   getSingle(isbn: string): Observable<Book> {
-    return this.http.get<any>(`${this.api}/book/${isbn}`);
+    return this.http.get<Book>(`${this.apiUrl}/books/${isbn}`);
   }
   remove(isbn: string): Observable<any> {
-    return this.http.delete(
-      '${this.api}/books/${isbn}',
-      { responseType: 'text'});
+    return this.http.delete('${this.api}/books/${isbn}');
   }
 }
